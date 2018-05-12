@@ -4,7 +4,7 @@ class Box {
 
     var options = {
       friction: dna_.genes[2],
-      restitution: 0.2,
+      restitution: 0.4,
       collisionFilter: {
         category: 0x0002,
         group: -2
@@ -52,6 +52,7 @@ class Box {
     translate(pos.x, pos.y);
     rotate(angle)
     rectMode(CENTER);
+    strokeWeight(2)
     fill('rgba(255, 100, 150, 0.4)');
     rect(0, 0, this.w, this.h)
     pop()

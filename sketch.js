@@ -11,32 +11,42 @@ var engine;
 var world;
 
 
-let lifetime = 80
+let lifetime = 90
 var ground = []
 let population;
 let lifeCounter = 0;
-let numberOfWalls = 5
+let numberOfWalls = 7
 
 
 
 function setup() {
-  createCanvas(800, 600)
+  createCanvas(800, 1000)
   engine = Engine.create();
   world = engine.world; //add engine to world - add world to world
   Engine.run(engine)
   rectMode(CENTER)
 
 
-  let mutationRate = 0.1;
-  population = new Population(mutationRate, 12)
+  let mutationRate = 0.05;
+  population = new Population(mutationRate, 20)
 
-  target = createVector(width / 2, height / 1.3)
+
+  target = createVector(width / 2, height / 1.32, 12, 12)
+
+
 
   for (let i = 0; i < numberOfWalls; i++) {
-    ground.push(new Boundary(width / 3, height / 8, 10, 450, -PI / 2.8));
-    ground.push(new Boundary(width / 1.6, height / 2.4, 10, 450, PI / 3.1))
-    ground.push(new Boundary(width / 3, height / 1.4, 10, 450, -PI / 2.8));
-    ground.push(new Boundary(width - 10, height / 2, 10, height, 0));
+    //top ground
+    ground.push(new Boundary(width / 3, height / 6, 10, 450, -PI / 2.8));
+    //second ground
+    ground.push(new Boundary(width / 1.5, height / 2.8, 10, 450, PI / 3.1))
+    //third ground
+    ground.push(new Boundary(width / 3, height / 1.8, 10, 450, -PI / 2.8));
+
+    ground.push(new Boundary(width / 1.6, height / 1.4, 10, 450, PI / 3.1))
+    //right wall
+    ground.push(new Boundary(width, height / 2, 10, height, 0));
+    //left wall
     ground.push(new Boundary(0, height / 2, 10, height, 0))
   }
 }
@@ -44,7 +54,9 @@ function setup() {
 
 function draw() {
   background(216, 192, 175);
-  ellipse(width / 2, height / 1.3, 12, 12) // target
+  fill(0)
+  //target visual
+  ellipse(width / 2, height / 1.32, 12, 12) // target
 
   if (lifeCounter < lifetime) {
     population.live()
@@ -54,6 +66,7 @@ function draw() {
     population.fitness();
     population.selectMatingPool();
     population.reproduction();
+
   }
 
   for (let i = 0; i < numberOfWalls; i++) {

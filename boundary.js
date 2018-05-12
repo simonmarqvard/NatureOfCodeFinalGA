@@ -2,7 +2,7 @@ class Boundary {
   constructor(x, y, w, h, t) {
     var options = {
       friction: 0,
-      restitution: 0.8,
+      restitution: 0.9,
       angle: t,
       isStatic: true,
       collisionFilter: {
@@ -25,10 +25,11 @@ class Boundary {
     var angle = this.body.angle
     var pos = this.body.position;
     push()
+    color(100, 200, 100)
     translate(pos.x, pos.y);
     rotate(this.body.angle)
     rectMode(CENTER);
-    fill(0)
+    fill(255, 255, 255)
     rect(0, 0, this.w, this.h)
     pop()
   }

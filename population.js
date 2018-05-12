@@ -30,22 +30,25 @@ class Population {
 
   selectMatingPool() {
     this.matingPool = []
+    console.log("MATINGPOOL RESET", this.matingPool.length)
     var maxFitness = this.getMaxFitness();
     // console.log(maxFitness);
-    // console.log(this.population.length)
+    console.log(this.population.length)
     for (var i = 0; i < this.population.length; i++) {
       var fitnessNormalized = map(this.population[i].getFitness(), 0, maxFitness, 0, 1)
       var n = floor(fitnessNormalized * 100);
+      console.log(n)
       for (var j = 0; j < n; j++) {
         this.matingPool.push(this.population[i])
       }
     }
+    console.log(this.matingPool.length)
   }
 
   reproduction() {
-    console.log('_______________________')
-    console.log('starting reproduction');
-    console.log('_______________________')
+    // console.log('_______________________')
+    // console.log('starting reproduction');
+    // console.log('_______________________')
     this.childPopulation = []
     for (var i = 0; i < this.population.length; i++) {
       var m = floor(random(this.matingPool.length));
@@ -69,11 +72,11 @@ class Population {
       // console.log(this.population)
       // this.population[i] = new Box(location, child);
       this.childPopulation.push(new Box(location, childGenes));
-      console.log('Adding child : ' + i);
+      // console.log('Adding child : ' + i);
     }
     this.population = this.childPopulation
     this.generations++;
-    console.log("Generation : " + this.generations)
+    // console.log("Generation : " + this.generations)
 
   }
 
